@@ -1,5 +1,6 @@
 {% set name = "hunter" %}
 {% set version = "3.0.1" %}
+{% set sha256 = "26c41a971e92f1ba9d6772081203e3478258fc45f8162b3ead031ca04ba2adfe" %}
 
 package:
   name: "{{ name|lower }}"
@@ -7,7 +8,7 @@ package:
 
 source:
   url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
-  sha256: "26c41a971e92f1ba9d6772081203e3478258fc45f8162b3ead031ca04ba2adfe"
+  sha256: {{ sha256 }}
 
 build:
   number: 0
@@ -18,11 +19,12 @@ build:
 
 requirements:
   host:
+    - python
     - pip
-    - python
+    - setuptools
   run:
-    - colorama
     - python
+    - colorama
 
 test:
   imports:
