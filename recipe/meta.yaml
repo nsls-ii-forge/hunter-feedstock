@@ -1,0 +1,39 @@
+{% set name = "hunter" %}
+{% set version = "3.0.1" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
+  sha256: "26c41a971e92f1ba9d6772081203e3478258fc45f8162b3ead031ca04ba2adfe"
+
+build:
+  number: 0
+  entry_points:
+    - hunter-trace = hunter.remote:main
+  noarch: "python"
+  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv "
+
+requirements:
+  host:
+    - pip
+    - python
+  run:
+    - colorama
+    - python
+
+test:
+  imports:
+    - hunter
+    - hunter.backports
+  commands:
+    - hunter-trace --help
+
+about:
+  home: "https://github.com/ionelmc/python-hunter"
+  license: "BSD"
+  license_family: "BSD"
+  license_file: "LICENSE"
+  summary: "Hunter is a flexible code tracing toolkit."
