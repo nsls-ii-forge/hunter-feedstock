@@ -14,12 +14,15 @@ build:
   number: 0
   entry_points:
     - hunter-trace = hunter.remote:main
-  noarch: "python"
   script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv "
 
 requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
   host:
     - python
+    - cython
     - pip
     - setuptools
   run:
