@@ -28,7 +28,7 @@ requirements:
   run:
     - python
     - colorama
-    - manhole
+    - manhole  # [not win]
 
 test:
   imports:
