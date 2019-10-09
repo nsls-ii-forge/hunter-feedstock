@@ -1,39 +1,45 @@
 {% set name = "hunter" %}
 {% set version = "3.0.1" %}
+{% set sha256 = "26c41a971e92f1ba9d6772081203e3478258fc45f8162b3ead031ca04ba2adfe" %}
 
 package:
-  name: "{{ name|lower }}"
-  version: "{{ version }}"
+  name: {{ name|lower }}
+  version: {{ version }}
 
 source:
-  url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
-  sha256: "26c41a971e92f1ba9d6772081203e3478258fc45f8162b3ead031ca04ba2adfe"
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
 
 build:
   number: 0
   entry_points:
     - hunter-trace = hunter.remote:main
-  noarch: "python"
-  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv "
+  script: {{ PYTHON }} -m pip install . --no-deps -vv
+  skip: True  # [py<36]
 
 requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
   host:
+    - python
+    - cython
     - pip
-    - python
   run:
-    - colorama
     - python
+    - colorama
+    - manhole  # [not win]
 
 test:
   imports:
     - hunter
     - hunter.backports
   commands:
-    - hunter-trace --help
+    - hunter-trace --help  # [not win]
 
 about:
-  home: "https://github.com/ionelmc/python-hunter"
-  license: "BSD"
-  license_family: "BSD"
-  license_file: "LICENSE"
-  summary: "Hunter is a flexible code tracing toolkit."
+  home: https://github.com/ionelmc/python-hunter
+  license: BSD-2-Clause
+  license_family: BSD
+  license_file: LICENSE
+  summary: Hunter is a flexible code tracing toolkit
