@@ -5,11 +5,9 @@ Home: https://github.com/ionelmc/python-hunter
 
 Package license: BSD-2-Clause
 
-Feedstock license: BSD-3-Clause
+Feedstock license: [BSD-3-Clause](https://github.com/nsls-ii-forge/hunter-feedstock/blob/master/LICENSE.txt)
 
 Summary: Hunter is a flexible code tracing toolkit
-
-
 
 Current build status
 ====================
