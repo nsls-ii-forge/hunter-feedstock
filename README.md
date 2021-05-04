@@ -111,6 +111,7 @@ Installing `hunter` from the `nsls2forge` channel can be achieved by adding `nsl
 
 ```
 conda config --add channels nsls2forge
+conda config --set channel_priority strict
 ```
 
 Once the `nsls2forge` channel has been enabled, `hunter` can be installed with:
