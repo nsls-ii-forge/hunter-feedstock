@@ -1,6 +1,6 @@
 {% set name = "hunter" %}
-{% set version = "3.3.3" %}
-{% set sha256 = "99cddc1f2bbf828232fa37dde939895318f6e451426532d94a90638fc152d3e6" %}
+{% set version = "3.3.5" %}
+{% set sha256 = "4a0c9215a14b0ccb492587358c75c540bed68533c84d3995d700b57a66fb12d0" %}
 
 package:
   name: {{ name|lower }}
